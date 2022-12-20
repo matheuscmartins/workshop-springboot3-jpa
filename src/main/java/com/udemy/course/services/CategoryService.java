@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service //regista como serviço para ser injetado com o Autowired(Injeção de dependencia) nesse caso no UserResource
+@Service //regista como serviço para ser injetado com o Autowired(Injeção de dependencia) nesse caso no CategoryResource
 public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
