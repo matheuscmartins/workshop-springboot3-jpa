@@ -1,6 +1,7 @@
 package com.udemy.course.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.udemy.course.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -16,6 +17,8 @@ public class Order implements Serializable {
     private Long id;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment; //do java 8 em diante usa-se o Instant para Date
+
+    private Integer orderStatus;
     @ManyToOne //referencia a outra tabela como muitos para um
     @JoinColumn(name = "client_id") //indica qual campo no banco é a foreign key
     private User client;
@@ -23,9 +26,10 @@ public class Order implements Serializable {
 
     }
 
-    public Order(Long id, Instant moment, User client) {
+    public Order(Long id, Instant moment, OrderStatus orderStatus,User client) {
         this.id = id;
         this.moment = moment;
+        setOrderStatus(orderStatus); //chama o set para converter a propriedade int para  enum
         this.client = client;
     }
 
@@ -43,6 +47,16 @@ public class Order implements Serializable {
 
     public void setMoment(Instant moment) {
         this.moment = moment;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(orderStatus); //converte do tipo enum passando um int
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        if (orderStatus != null) {
+            this.orderStatus = orderStatus.getCode(); //transforma o codigo vindo da classe enum para int
+        }
     }
 
     public User getClient() {
