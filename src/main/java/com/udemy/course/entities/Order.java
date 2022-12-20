@@ -1,5 +1,6 @@
 package com.udemy.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -13,6 +14,7 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment; //do java 8 em diante usa-se o Instant para Date
     @ManyToOne //referencia a outra tabela como muitos para um
     @JoinColumn(name = "client_id") //indica qual campo no banco é a foreign key

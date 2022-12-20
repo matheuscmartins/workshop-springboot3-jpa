@@ -1,5 +1,6 @@
 package com.udemy.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
@@ -21,6 +22,7 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
+    @JsonIgnore //ignora a serialização para evitar looping infinito
     @OneToMany(mappedBy = "client") //indica qual campo na tabela user esta ligado a tabela order
     private List<Order> orders = new ArrayList<>();
 
