@@ -7,11 +7,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_user")
+@Table(name = "tb_user") //como a palavra user é reservada do banco, o nome da tabela sera tb_user
 public class User implements Serializable {
-    private static  final long serialVersionUID = 1L;
+    private static  final long serialVersionUID = 1L; //quando tiver trafego de obj pela rede
 
-    @Id
+    @Id //indica pro spring que esse será o id do banco
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
