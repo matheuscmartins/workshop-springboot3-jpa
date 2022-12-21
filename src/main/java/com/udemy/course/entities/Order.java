@@ -6,7 +6,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
@@ -22,6 +24,10 @@ public class Order implements Serializable {
     @ManyToOne //referencia a outra tabela como muitos para um
     @JoinColumn(name = "client_id") //indica qual campo no banco é a foreign key
     private User client;
+
+    @OneToMany(mappedBy = "id.order") //coleção de orderItems para obter os itens do pedido
+    private Set<OrderItem> items = new HashSet<>();
+
     public  Order(){
 
     }
@@ -65,6 +71,11 @@ public class Order implements Serializable {
 
     public void setClient(User client) {
         this.client = client;
+    }
+
+
+    public Set<OrderItem> getItems(){ // criado o set na mão para obter os items
+        return items;
     }
 
     @Override

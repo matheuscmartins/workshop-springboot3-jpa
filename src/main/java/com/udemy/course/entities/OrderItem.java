@@ -1,5 +1,6 @@
 package com.udemy.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemy.course.entities.pk.OrderItemPK;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -14,7 +15,8 @@ public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId //refencia com a classe OrdemItemPK
-    private OrderItemPK id;
+    private OrderItemPK id = new OrderItemPK();
+    //sempre que for criar uma classe auxiliar que é id composto tem que instanciar pra ela nao inicializar com null
     private Integer quantity;
     private Double price;
 
@@ -31,6 +33,7 @@ public class OrderItem implements Serializable {
     }
 
     // getters e setters de Order e Product tbm foram criados a mão
+    @JsonIgnore //para eviter o problema de loop
     public Order getOrder(){
         return  id.getOrder();
     }
