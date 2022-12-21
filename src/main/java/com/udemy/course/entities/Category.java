@@ -1,5 +1,6 @@
 package com.udemy.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -16,7 +17,9 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Transient
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories") //indica que o mapeamento foi feito na tabela Product no prop Categories
     private Set<Product> products = new HashSet<>(); //O HASHSET implementa a interface SET
     //Usa-se o set para garantir que o mesma categoria não repita um produto, e instaciar para garantir que não comece null
 

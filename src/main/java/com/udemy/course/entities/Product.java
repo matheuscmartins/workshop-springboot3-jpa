@@ -19,11 +19,14 @@ public class Product implements Serializable {
     private String description;
     private Double price;
     private String imgUrl;
-    @Transient
+    @ManyToMany //muitos pra muitos
+    @JoinTable(name = "tb_product_category", //indica pro BD de dados a tabela a ser criada de ligação muitos pra muitos
+            joinColumns = @JoinColumn(name = "product_id"), //indica a foreingkey de Product na Product_Category
+    inverseJoinColumns = @JoinColumn(name = "category_id")) //indica a foreingkey de Category na Product_Category
     private Set<Category> categories = new HashSet<>(); //O HASHSET implementa a interface SET
     //Usa-se o set para garantir que o mesmo produto repita uma categoria, e instaciar para garantir que não comece null
 
-    public Product(){
+    public Product() {
     }
 
     public Product(Long id, String name, String description, Double price, String imgUrl) {
