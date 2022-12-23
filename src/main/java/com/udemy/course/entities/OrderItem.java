@@ -33,7 +33,7 @@ public class OrderItem implements Serializable {
     }
 
     // getters e setters de Order e Product tbm foram criados a mão
-    @JsonIgnore //para eviter o problema de loop
+    @JsonIgnore //para evitar o problema de loop
     public Order getOrder(){
         return  id.getOrder();
     }
