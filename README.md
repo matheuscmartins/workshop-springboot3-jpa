@@ -18,5 +18,5 @@ Projeto realizado do curso java Springboot do devsuperior.com.br no Udemy. Instr
 <img align="center" height="50" width="60" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-plain-wordmark.svg" />
 <img align="center" height="55" width="65" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" />
 <img align="center" height="50" width="60" src="https://voyager.postman.com/logo/postman-logo-icon-orange.svg" />
-                            
+<img align="center" height="50" width="90" src="https://maven.apache.org/images/maven-logo-black-on-white.png" />                    
 </div>
