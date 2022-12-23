@@ -8,6 +8,7 @@ Objetivos:<br>
 ° Povoar o banco de dados.<br>
 ° Banco de dados MySQL.<br>
 ° CRUD - Create, Retrieve, Update, Delete.<br>
+° Resquests nos endpoints utilizando o Postman.<br>
 ° Tratamento de exceções.<br>
 Projeto realizado do curso java Springboot do devsuperior.com.br no Udemy. Instrutor: Nelio Alves.
 </div>
