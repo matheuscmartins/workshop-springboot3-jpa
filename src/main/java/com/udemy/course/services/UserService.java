@@ -3,8 +3,10 @@ package com.udemy.course.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.udemy.course.repositories.CategoryRepository;
 import com.udemy.course.services.exceptions.DatabaseException;
 import com.udemy.course.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,6 +18,8 @@ import com.udemy.course.repositories.UserRepository;
 public class UserService {
     @Autowired
     private UserRepository repository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     public List<User> findAll() {
         return repository.findAll();
@@ -40,9 +44,14 @@ public class UserService {
 
     }
     public User update(Long id, User obj){
-        User entity = repository.getReferenceById(id);
-        updateData(entity, obj);
-        return repository.save(entity);
+        try {
+            User entity = repository.getReferenceById(id);
+            updateData(entity, obj);
+            return repository.save(entity);
+        } catch (EntityNotFoundException e)
+        {
+            throw new ResourceNotFoundException(id);
+        }
 
     }
     private void updateData(User entity, User obj){
