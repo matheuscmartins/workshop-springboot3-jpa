@@ -34,9 +34,15 @@ public class UserResource {
     public ResponseEntity<User> insert(@RequestBody //para indicar que o Json sera desserializado para User
                                        User obj) {
         obj = service.insert(obj);
-       //return ResponseEntity.ok().body(obj); nesse é utilziado para retornar um status 200 de ok
+       //return ResponseEntity.ok().body(obj); nesse caso é utilziado para retornar um status 200 de ok
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
+        //esse caso pega o id do obj e transforma pro tipo URI.
+        return ResponseEntity.created(uri).body(obj); // salva no DB e retorna status 201 de created
+    }
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        service.delete(id);
+        return  ResponseEntity.noContent().build(); //status 204
     }
 }
